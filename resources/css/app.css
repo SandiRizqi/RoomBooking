@@ -1,0 +1,26 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+    /*
+     * img-wrapper: container gambar dengan posisi relative.
+     * img-placeholder: elemen fallback yang selalu ada di belakang gambar;
+     * akan terlihat jika gambar gagal dimuat (karena gambar pakai
+     * onerror="this.style.display='none'" atau tidak ada).
+     */
+    .img-wrapper {
+        @apply relative overflow-hidden;
+    }
+
+    .img-placeholder {
+        @apply absolute inset-0 flex items-center justify-center bg-stone-50 -z-0;
+    }
+
+    /*
+     * Pastikan gambar asli tetap di atas placeholder
+     */
+    .img-wrapper img {
+        @apply relative z-10;
+    }
+}
