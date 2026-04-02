@@ -21,10 +21,7 @@ $app = Application::configure(basePath: dirname(__DIR__))
 
 
     // Override storage & bootstrap/cache ke /tmp agar writable di Vercel
-if (isset($_ENV['APP_STORAGE_PATH'])) {
-    $app->useStoragePath('/tmp/storage');
-}
-
+$app->useStoragePath('/tmp/storage');
 $app->useBootstrapPath('/tmp/bootstrap');  // ← tambah ini
 
 return $app;
