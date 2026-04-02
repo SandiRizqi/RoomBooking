@@ -2,7 +2,7 @@
     "version": 2,
     "framework": null,
     "functions": {
-        "vercel-php/index.php": { "runtime": "vercel-php@0.8.0" }
+        "vercelphp/index.php": { "runtime": "vercel-php@0.8.0" }
     },
     "routes": [
        { "src": "/build/(.*)", "dest": "/public/build/$1" },
