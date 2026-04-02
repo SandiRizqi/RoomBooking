@@ -8,7 +8,7 @@
        { "src": "/build/(.*)", "dest": "/public/build/$1" },
         { "src": "/assets/(.*)", "dest": "/public/assets/$1" },
         { "src": "/favicon.ico", "dest": "/public/favicon.ico" },
-        { "src": "/(.*)", "dest": "/vercel-php/index.php" }
+        { "src": "/(.*)", "dest": "/vercelphp/index.php" }
     ],
     "outputDirectory": "public",
     "env": {
