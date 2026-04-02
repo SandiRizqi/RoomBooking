@@ -4,7 +4,7 @@ use Illuminate\Foundation\Application;
 use Illuminate\Foundation\Configuration\Exceptions;
 use Illuminate\Foundation\Configuration\Middleware;
 
-return Application::configure(basePath: dirname(__DIR__))
+$app = Application::configure(basePath: dirname(__DIR__))
     ->withRouting(
         web: __DIR__.'/../routes/web.php',
         apiPrefix: 'v1', 
@@ -17,3 +17,13 @@ return Application::configure(basePath: dirname(__DIR__))
     ->withExceptions(function (Exceptions $exceptions) {
         //
     })->create();
+
+
+    // Override storage & bootstrap/cache ke /tmp agar writable di Vercel
+if (isset($_ENV['APP_STORAGE_PATH'])) {
+    $app->useStoragePath('/tmp/storage');
+}
+
+$app->useBootstrapPath('/tmp/bootstrap');  // ← tambah ini
+
+return $app;
