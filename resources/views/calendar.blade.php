@@ -86,7 +86,7 @@
                     center: 'title',
                     right: 'dayGridMonth,timeGridWeek'
                 },
-                events: '/api/availability-events',
+                events: '/v1/availability-events',
                 dateClick: function(info) {
                     // Cek jika tanggal yang diklik adalah hari ini atau masa depan
                     var clickedDate = new Date(info.dateStr);
