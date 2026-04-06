@@ -40,6 +40,8 @@ class GalleryResource extends Resource
                 Forms\Components\FileUpload::make('image_path')
                     ->label('Upload Foto')
                     ->image()
+                    ->disk('s3')
+                    ->visibility('public')
                     ->required()
                     ->directory('galleries')
                     ->imageResizeMode('cover')

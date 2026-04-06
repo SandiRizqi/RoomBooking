@@ -79,6 +79,8 @@ class RoomResource extends Resource
                         Forms\Components\FileUpload::make('cover_image')
                             ->label('Foto Utama (Cover)')
                             ->image()
+                            ->disk('s3')
+                            ->visibility('public')
                             ->directory('rooms/covers')
                             ->imageResizeMode('cover')
                             ->imageCropAspectRatio('16:9')
@@ -88,6 +90,8 @@ class RoomResource extends Resource
                             ->label('Galeri Foto Tambahan')
                             ->multiple()
                             ->image()
+                            ->disk('s3')
+                            ->visibility('public')
                             ->directory('rooms/gallery')
                             ->reorderable()
                             ->maxFiles(10),

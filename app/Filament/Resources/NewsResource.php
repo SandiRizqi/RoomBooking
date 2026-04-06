@@ -50,6 +50,8 @@ class NewsResource extends Resource
                         Forms\Components\FileUpload::make('image_path')
                             ->label('Foto Header')
                             ->image()
+                            ->disk('s3')
+                            ->visibility('public')
                             ->directory('news')
                             ->imageResizeMode('cover')
                             ->imageCropAspectRatio('16:9')
