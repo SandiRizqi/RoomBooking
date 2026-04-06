@@ -478,7 +478,7 @@
                     if (typeA !== 'booked' && typeB === 'booked') return 1;
                     return 0;
                 },
-                events: '/api/availability-events',
+                events: '/v1/availability-events',
                 eventClick: function (info) {
                     var props = info.event.extendedProps || {};
                     if (props.type === 'available' && props.date) {
