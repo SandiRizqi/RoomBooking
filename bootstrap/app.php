@@ -19,7 +19,9 @@ $app = Application::configure(basePath: dirname(__DIR__))
         //
     })->create();
 
-// Redirect storage ke /tmp agar writable di Vercel
-$app->useStoragePath('/tmp/storage');
+// Redirect storage ke /tmp agar writable di Vercel (hanya di Vercel)
+if (isset($_ENV['VERCEL']) || getenv('VERCEL')) {
+    $app->useStoragePath('/tmp/storage');
+}
 
 return $app;
