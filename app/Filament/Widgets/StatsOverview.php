@@ -17,7 +17,7 @@ class StatsOverview extends BaseWidget
         $paidBookings   = Booking::where('payment_status', 'paid')->count();
         $unpaidBookings = Booking::where('payment_status', 'unpaid')->count();
         $totalRevenue   = Booking::where('payment_status', 'paid')->sum('total_price');
-        $activeRooms    = Room::where('is_active', true)->count();
+        $activeRooms    = Room::active()->count();
 
         // Monthly bookings for sparkline
         $monthlyData = [];

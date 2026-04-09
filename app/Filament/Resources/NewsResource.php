@@ -97,7 +97,11 @@ class NewsResource extends Resource
             ])
             ->filters([
                 Tables\Filters\TernaryFilter::make('is_published')
-                    ->label('Status Publikasi'),
+                    ->label('Status Publikasi')
+                    ->queries(
+                        true: fn ($query) => $query->whereRaw('"is_published" = true'),
+                        false: fn ($query) => $query->whereRaw('"is_published" = false'),
+                    ),
             ])
             ->actions([
                 Tables\Actions\EditAction::make()->label('Edit'),

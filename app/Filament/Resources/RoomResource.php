@@ -166,7 +166,11 @@ class RoomResource extends Resource
             ])
             ->filters([
                 Tables\Filters\TernaryFilter::make('is_active')
-                    ->label('Status Aktif'),
+                    ->label('Status Aktif')
+                    ->queries(
+                        true: fn ($query) => $query->whereRaw('"is_active" = true'),
+                        false: fn ($query) => $query->whereRaw('"is_active" = false'),
+                    ),
             ])
             ->actions([
                 Tables\Actions\EditAction::make()->label('Edit'),
