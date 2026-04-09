@@ -33,8 +33,12 @@ class News extends Model
         });
     }
 
+    /**
+     * Uses whereRaw for PostgreSQL boolean compatibility.
+     * Avoids: "operator does not exist: boolean = integer"
+     */
     public function scopePublished($query)
     {
-        return $query->where('is_published', true);
+        return $query->whereRaw('"is_published" = true');
     }
 }

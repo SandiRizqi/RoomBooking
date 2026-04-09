@@ -38,6 +38,16 @@ class Room extends Model
         });
     }
 
+    /**
+     * Scope for active rooms.
+     * Uses whereRaw for PostgreSQL boolean compatibility.
+     * Avoids: "operator does not exist: boolean = integer"
+     */
+    public function scopeActive($query)
+    {
+        return $query->whereRaw('"is_active" = true');
+    }
+
     public function facilities()
     {
         return $this->belongsToMany(Facility::class, 'room_facility');

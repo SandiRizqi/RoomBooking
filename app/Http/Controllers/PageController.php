@@ -12,16 +12,16 @@ class PageController extends Controller
 {
     public function home()
     {
-        $rooms = Room::where('is_active', true)->with('facilities')->take(6)->get();
+        $rooms = Room::active()->with('facilities')->take(6)->get();
         $galleries = Gallery::orderBy('sort_order')->take(8)->get();
-        $news = News::where('is_published', true)->orderByDesc('published_at')->take(3)->get();
+        $news = News::published()->orderByDesc('published_at')->take(3)->get();
 
         return view('welcome', compact('rooms', 'galleries', 'news'));
     }
 
     public function rooms(Request $request)
     {
-        $query = Room::where('is_active', true)->with('facilities');
+        $query = Room::active()->with('facilities');
 
         // Filter berdasarkan ketersediaan tanggal
         if ($date = $request->get('date')) {
@@ -72,7 +72,7 @@ class PageController extends Controller
 
     public function newsIndex()
     {
-        $news = News::where('is_published', true)->orderByDesc('published_at')->paginate(9);
+        $news = News::published()->orderByDesc('published_at')->paginate(9);
         return view('news.index', compact('news'));
     }
 
@@ -95,7 +95,7 @@ class PageController extends Controller
         $end   = $request->get('end');
 
         // Ambil semua room aktif
-        $allRooms = Room::where('is_active', true)->get(['id', 'name', 'slug']);
+        $allRooms = Room::active()->get(['id', 'name', 'slug']);
         $totalRooms = $allRooms->count();
 
         // Ambil booking aktif dalam rentang
