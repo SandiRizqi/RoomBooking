@@ -29,6 +29,15 @@ class Room extends Model
         'price_per_day' => 'decimal:2',
     ];
 
+    /**
+     * Mutator: pastikan is_active disimpan sebagai string 'true'/'false'
+     * agar PostgreSQL tidak error "boolean = integer" saat INSERT/UPDATE.
+     */
+    public function setIsActiveAttribute($value): void
+    {
+        $this->attributes['is_active'] = $value ? 'true' : 'false';
+    }
+
     protected static function booted(): void
     {
         static::creating(function (Room $room) {

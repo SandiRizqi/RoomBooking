@@ -52,6 +52,15 @@ class User extends Authenticatable implements FilamentUser
         ];
     }
 
+    /**
+     * Mutator: pastikan is_admin disimpan sebagai string 'true'/'false'
+     * agar PostgreSQL tidak error "boolean = integer" saat INSERT/UPDATE.
+     */
+    public function setIsAdminAttribute($value): void
+    {
+        $this->attributes['is_admin'] = $value ? 'true' : 'false';
+    }
+
     public function canAccessPanel(Panel $panel): bool
     {
         return $this->is_admin;

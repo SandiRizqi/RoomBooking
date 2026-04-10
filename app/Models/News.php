@@ -24,6 +24,15 @@ class News extends Model
         'published_at' => 'datetime',
     ];
 
+    /**
+     * Mutator: pastikan is_published disimpan sebagai string 'true'/'false'
+     * agar PostgreSQL tidak error "boolean = integer" saat INSERT/UPDATE.
+     */
+    public function setIsPublishedAttribute($value): void
+    {
+        $this->attributes['is_published'] = $value ? 'true' : 'false';
+    }
+
     protected static function booted(): void
     {
         static::creating(function (News $news) {
